@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"runtime"
+	"time"
 
 	stub "github.com/openshift/auth-config-operator/pkg/stub"
 	sdk "github.com/operator-framework/operator-sdk/pkg/sdk"
@@ -32,7 +33,7 @@ func main() {
 	}
 	resyncPeriod := 5
 	logrus.Infof("Watching %s, %s, %s, %d", resource, kind, namespace, resyncPeriod)
-	sdk.Watch(resource, kind, namespace, resyncPeriod)
+	sdk.Watch(resource, kind, namespace, time.Duration(resyncPeriod)*time.Second)
 	sdk.Handle(stub.NewHandler())
 	sdk.Run(context.TODO())
 }
