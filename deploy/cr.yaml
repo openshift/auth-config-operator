@@ -1,0 +1,4 @@
+apiVersion: "auth.config.openshift.io/v1alpha1"
+kind: "ClusterAuthentication"
+metadata:
+  name: "example"
