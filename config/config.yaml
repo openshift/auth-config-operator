@@ -1,0 +1,3 @@
+apiVersion: auth.config.openshift.io/v1alpha1
+kind: ClusterAuthentication
+projectName: auth-config-operator
