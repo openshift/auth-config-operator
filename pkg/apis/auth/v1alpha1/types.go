@@ -22,8 +22,10 @@ type ClusterAuthentication struct {
 }
 
 type ClusterAuthenticationSpec struct {
+	Ok bool `json:"ok"` // TEMPORARY
 	// Fill me
 }
 type ClusterAuthenticationStatus struct {
+	Ok bool `json:"ok"` // TEMPORARY
 	// Fill me
 }
