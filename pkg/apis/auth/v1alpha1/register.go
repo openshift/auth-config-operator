@@ -29,6 +29,16 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 	scheme.AddKnownTypes(SchemeGroupVersion,
 		&ClusterAuthentication{},
 		&ClusterAuthenticationList{},
+		&AllowAllPasswordIdentityProvider{},
+		&DenyAllPasswordIdentityProvider{},
+		&HTPasswdPasswordIdentityProvider{},
+		&LDAPPasswordIdentityProvider{},
+		&KeystonePasswordIdentityProvider{},
+		&RequestHeaderIdentityProvider{},
+		&GitHubIdentityProvider{},
+		&GitLabIdentityProvider{},
+		&GoogleIdentityProvider{},
+		&OpenIDIdentityProvider{},
 	)
 	metav1.AddToGroupVersion(scheme, SchemeGroupVersion)
 	return nil
