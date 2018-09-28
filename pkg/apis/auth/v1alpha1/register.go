@@ -11,6 +11,9 @@ import (
 const (
 	version   = "v1alpha1"
 	groupName = "auth.config.openshift.io"
+
+	ClusterAuthenticationKind     = "ClusterAuthentication"
+	ClusterAuthenticationListKind = "ClusterAuthenticationList"
 )
 
 var (
@@ -20,15 +23,27 @@ var (
 	SchemeGroupVersion = schema.GroupVersion{Group: groupName, Version: version}
 )
 
+// Resource takes an unqualified resource and returns a Group-qualified GroupResource.
+func Resource(resource string) schema.GroupResource {
+	return SchemeGroupVersion.WithResource(resource).GroupResource()
+}
 func init() {
 	sdkK8sutil.AddToSDKScheme(AddToScheme)
 }
 
 // addKnownTypes adds the set of types defined in this package to the supplied scheme.
+
+// addKnownTypes adds the set of types defined in this package to the supplied scheme.
 func addKnownTypes(scheme *runtime.Scheme) error {
-	scheme.AddKnownTypes(SchemeGroupVersion,
+	scheme.AddKnownTypeWithName(
+		SchemeGroupVersion.WithKind(ClusterAuthenticationKind),
 		&ClusterAuthentication{},
+	)
+	scheme.AddKnownTypeWithName(
+		SchemeGroupVersion.WithKind(ClusterAuthenticationListKind),
 		&ClusterAuthenticationList{},
+	)
+	scheme.AddKnownTypes(SchemeGroupVersion,
 		&AllowAllPasswordIdentityProvider{},
 		&DenyAllPasswordIdentityProvider{},
 		&HTPasswdPasswordIdentityProvider{},
