@@ -44,7 +44,6 @@ type Handler struct {
 func (h *Handler) Handle(ctx context.Context, event sdk.Event) error {
 	switch o := event.Object.(type) {
 	case *v1alpha1.ClusterAuthentication:
-		glog.Infof("syncing clusterauth: %#v", o)
 		if err := h.sync(o); err != nil {
 			glog.Errorf("error syncing clusterauth: %v", err)
 			return err
@@ -61,6 +60,7 @@ func (h *Handler) sync(ca *v1alpha1.ClusterAuthentication) error {
 		glog.Warningf("unknown ClusterAuthentication resource: name='%s'", ca.GetName())
 		return nil
 	}
+	glog.Infof("syncing clusterauth: %s", ca.GetName())
 	kconfig, err := h.KubeapiserverConfigClient.KubeApiserverOperatorConfigs().
 		Get(h.KubeApiserverOperatorConfigName, metav1.GetOptions{})
 	if err != nil {

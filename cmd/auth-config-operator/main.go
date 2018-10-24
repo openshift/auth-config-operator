@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"runtime"
 	"time"
 
@@ -14,6 +15,9 @@ import (
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 )
 
+func init() {
+	flag.Parse()
+}
 func printVersion() {
 	glog.Infof("Go Version: %s", runtime.Version())
 	glog.Infof("Go OS/Arch: %s/%s", runtime.GOOS, runtime.GOARCH)
