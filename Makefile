@@ -11,9 +11,9 @@ CMDS  := $(addprefix bin/, $(shell go list ./cmd/... | xargs -I{} basename {}))
 IMAGE_REPO := quay.io/openshift/auth-config-operator
 IMAGE_TAG ?= "dev"
 
-.PHONY: build test run clean vendor vendor-update coverage coverage-html
+.PHONY: build test run clean vendor vendor-update coverage coverage-html image
 
-all: test build
+all: test image
 
 test: cover.out
 
@@ -31,7 +31,9 @@ coverage-html: cover.out
 	go tool cover -html=cover.out
 
 build: $(CMDS)
-	# docker build -t $(IMAGE_REPO):$(IMAGE_TAG) . # TODO
+
+image:
+	docker build -t $(IMAGE_REPO):$(IMAGE_TAG) .
 
 $(CMDS):
 	CGO_ENABLED=0 go build -o $@ $(PKG)/cmd/$(shell basename $@)
