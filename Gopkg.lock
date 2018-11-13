@@ -170,6 +170,25 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/openshift/api"
+  packages = [
+    "config/v1",
+    "operator/v1alpha1"
+  ]
+  revision = "ab94c17d53098bd73dcfbbc26c6ce078959b361f"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/openshift/cluster-kube-apiserver-operator"
+  packages = [
+    "pkg/apis/kubeapiserver/v1alpha1",
+    "pkg/generated/clientset/versioned/scheme",
+    "pkg/generated/clientset/versioned/typed/kubeapiserver/v1alpha1"
+  ]
+  revision = "7cd79eae7bd2192bb1038d20bdff10732e1c4028"
+
+[[projects]]
+  branch = "master"
   name = "github.com/operator-framework/operator-sdk"
   packages = [
     "pkg/k8sclient",
@@ -418,6 +437,7 @@
   packages = [
     "discovery",
     "discovery/cached",
+    "discovery/fake",
     "dynamic",
     "kubernetes",
     "kubernetes/scheme",
@@ -449,6 +469,7 @@
     "kubernetes/typed/storage/v1",
     "kubernetes/typed/storage/v1alpha1",
     "kubernetes/typed/storage/v1beta1",
+    "listers/core/v1",
     "pkg/apis/clientauthentication",
     "pkg/apis/clientauthentication/v1alpha1",
     "pkg/version",
@@ -456,6 +477,7 @@
     "plugin/pkg/client/auth/gcp",
     "rest",
     "rest/watch",
+    "testing",
     "third_party/forked/golang/template",
     "tools/auth",
     "tools/cache",
@@ -538,6 +560,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "22a3131aff0c3b6f0a97bc22324996cfa5dabe1f626a90facb0daf29bbe0d52a"
+  inputs-digest = "c55f84f5da08de37a7056fe87a808500d7672d4b7264aed6cfeb50d199e49246"
   solver-name = "gps-cdcl"
   solver-version = 1

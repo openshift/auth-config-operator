@@ -1,4 +1,9 @@
 apiVersion: "auth.config.openshift.io/v1alpha1"
 kind: "ClusterAuthentication"
 metadata:
-  name: "example"
+  name: "instance"
+  namespace: default
+spec:
+  oauthConfig:
+    tokenConfig:
+      accessTokenMaxAgeSeconds: 1000
